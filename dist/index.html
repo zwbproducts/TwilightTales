@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twilight Tales - RPG Town Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #0c0a09 0%, #1a1412 50%, #0c0a09 100%);
+            color: #e8dcc8;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #gameCanvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 0.3em;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                         0 0 20px rgba(212, 175, 55, 0.3);
+            animation: titleFadeIn 2s ease-out;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #a67c52;
+            margin-bottom: 20px;
+            animation: subtitleFadeIn 2s ease-out 0.5s backwards;
+        }
+
+        .instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(12, 10, 9, 0.9);
+            padding: 15px 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            font-size: 0.95rem;
+            color: #c8b698;
+            pointer-events: auto;
+            animation: instructionsFadeIn 2s ease-out 1s backwards;
+        }
+
+        .instructions kbd {
+            display: inline-block;
+            background: #1a1412;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #a67c52;
+            margin: 0 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #d4af37;
+        }
+
+        @keyframes titleFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes subtitleFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes instructionsFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+                letter-spacing: 0.2em;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .instructions {
+                font-size: 0.85rem;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+  <script type="module" crossorigin src="./assets/index-s4_k9JAt.js"></script>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="ui">
+            <h1 class="title">TWILIGHT TALES</h1>
+            <p class="subtitle">A Village at Dusk</p>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="instructions">
+            Use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move • <kbd>SPACE</kbd> to interact • <kbd>L</kbd> to toggle lighting • <kbd>ESC</kbd> to fullscreen
+        </div>
+    </div>
+
+</body>
+</html>
