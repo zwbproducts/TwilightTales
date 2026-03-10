@@ -85,16 +85,21 @@ function preload() {
 function create() {
     // Create Town Map
     map = this.make.tilemap({ tileWidth: 32, tileHeight: 32, width: 60, height: 40 });
-    tileset = map.addTilesetImage('tiles', 'tiles', 32, 32, 0, 0, 0);
+    tileset = map.addTilesetImage('tiles');
     
     if (!tileset) {
         console.warn('Tileset not found');
         return;
     }
     
-    groundLayer = map.createLayer(0, tileset, 0, 0);
-    buildingLayer = map.createLayer(1, tileset, 0, 0);
-    npcLayer = map.createLayer(2, tileset, 0, 0);
+    groundLayer = map.createBlankLayer('ground', tileset);
+    buildingLayer = map.createBlankLayer('buildings', tileset);
+    npcLayer = map.createBlankLayer('npcs', tileset);
+    
+    if (!groundLayer) {
+        console.warn('Could not create ground layer');
+        return;
+    }
     
     // Generate Ground
     for (let x = 0; x < map.width; x++) {
