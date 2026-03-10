@@ -313,9 +313,20 @@ function create() {
     // Sound Effects
     ambienceSound = this.sound.add('ambience', { loop: true, volume: 0.3 });
     footstepsSound = this.sound.add('footsteps', { loop: true, volume: 0.2 });
-    if (this.sound.get('ambience')) {
-        ambienceSound.play().catch(() => {});
-    }
+    
+    // Defer audio play until user interaction to satisfy browser autoplay policy
+    const startAudio = () => {
+        if (this.sound.context.state === 'suspended') {
+            this.sound.context.resume();
+        }
+        if (ambienceSound && !ambienceSound.isPlaying) {
+            ambienceSound.play().catch(() => {});
+        }
+        document.removeEventListener('click', startAudio);
+        document.removeEventListener('keydown', startAudio);
+    };
+    document.addEventListener('click', startAudio);
+    document.addEventListener('keydown', startAudio);
     
     // UI Elements
     createUI(this);
@@ -389,13 +400,17 @@ function update() {
         if (footstepsSound) footstepsSound.pause();
         player.anims.stop();
         // Set idle frame based on last direction
-        const frame = player.anims.currentAnim ? player.anims.currentAnim.name.split('-')[2] : 'down';
+        let frame = 'down';
+        if (player.anims.currentAnim && player.anims.currentAnim.name) {
+            const parts = player.anims.currentAnim.name.split('-');
+            frame = parts[2] || 'down';
+        }
         player.setFrame({
             'down': 0,
             'up': 12,
             'left': 4,
             'right': 8
-        }[frame]);
+        }[frame] || 0);
     }
     
     // Lighting Toggle
