@@ -75,7 +75,7 @@ function preload() {
         frameWidth: 64,
         frameHeight: 64
     });
-    this.load.audio('ambience', 'assets/ambience.mp3');
+    this.load.audio('ambience', 'assets/ambience.wav');
     this.load.audio('footsteps', 'assets/footsteps.wav');
     this.load.audio('door', 'assets/door.wav');
     this.load.audio('chime', 'assets/chime.wav');
@@ -84,12 +84,17 @@ function preload() {
 // Create Game World
 function create() {
     // Create Town Map
-    map = this.make.tilemap({ key: null, tileWidth: 32, tileHeight: 32, width: 60, height: 40 });
-    tileset = map.addTilesetImage('tiles');
+    map = this.make.tilemap({ tileWidth: 32, tileHeight: 32, width: 60, height: 40 });
+    tileset = map.addTilesetImage('tiles', 'tiles', 32, 32, 0, 0, 0);
     
-    groundLayer = map.createLayer('ground', tileset, 0, 0);
-    buildingLayer = map.createLayer('buildings', tileset, 0, 0);
-    npcLayer = map.createLayer('npcs', tileset, 0, 0);
+    if (!tileset) {
+        console.warn('Tileset not found');
+        return;
+    }
+    
+    groundLayer = map.createLayer(0, tileset, 0, 0);
+    buildingLayer = map.createLayer(1, tileset, 0, 0);
+    npcLayer = map.createLayer(2, tileset, 0, 0);
     
     // Generate Ground
     for (let x = 0; x < map.width; x++) {
