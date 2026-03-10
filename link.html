@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twilight Tales - RPG Town Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #0c0a09 0%, #1a1412 50%, #0c0a09 100%);
+            color: #e8dcc8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(12, 10, 9, 0.9);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                         0 0 20px rgba(212, 175, 55, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #a67c52;
+            margin-bottom: 40px;
+        }
+
+        .demo-link {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #0c0a09;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+
+        .demo-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+            background: linear-gradient(135deg, #e8d46a 0%, #d4af37 100%);
+        }
+
+        .demo-link:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
+        }
+
+        .instructions {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #c8b698;
+            line-height: 1.6;
+        }
+
+        .instructions kbd {
+            display: inline-block;
+            background: #1a1412;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #a67c52;
+            margin: 0 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #d4af37;
+        }
+
+        .features {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .features h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(166, 124, 82, 0.2);
+        }
+
+        .features li::before {
+            content: '✦ ';
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+                letter-spacing: 0.2em;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .demo-link {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">TWILIGHT TALES</h1>
+        <p class="subtitle">A Village at Dusk - Interactive Demo</p>
+        
+        <a href="/" class="demo-link">▶️ START DEMO</a>
+        
+        <div class="instructions">
+            <p>Use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move • <kbd>SPACE</kbd> to interact • <kbd>L</kbd> to toggle lighting • <kbd>ESC</kbd> to fullscreen</p>
+        </div>
+        
+        <div class="features">
+            <h3>Features</h3>
+            <ul>
+                <li>Realistic dusk lighting with dynamic shadows</li>
+                <li>6 unique buildings to explore</li>
+                <li>6 interactive NPCs with unique dialogues</li>
+                <li>Interactable objects (well, sign, doors)</li>
+                <li>Dynamic sound effects (ambience, footsteps, door creaks)</li>
+                <li>Player character with smooth animations</li>
+                <li>Beautiful village at dusk setting</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
