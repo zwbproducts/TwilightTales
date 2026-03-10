@@ -87,9 +87,9 @@ function create() {
     map = this.make.tilemap({ key: null, tileWidth: 32, tileHeight: 32, width: 60, height: 40 });
     tileset = map.addTilesetImage('tiles');
     
-    groundLayer = map.createLayer('ground', tileset, 0, 0);
-    buildingLayer = map.createLayer('buildings', tileset, 0, 0);
-    npcLayer = map.createLayer('npcs', tileset, 0, 0);
+    groundLayer = map.createBlankLayer('ground', tileset, 0, 0, 60, 40);
+    buildingLayer = map.createBlankLayer('buildings', tileset, 0, 0, 60, 40);
+    npcLayer = map.createBlankLayer('npcs', tileset, 0, 0, 60, 40);
     
     // Generate Ground
     for (let x = 0; x < map.width; x++) {
@@ -313,7 +313,9 @@ function create() {
     // Sound Effects
     ambienceSound = this.sound.add('ambience', { loop: true, volume: 0.3 });
     footstepsSound = this.sound.add('footsteps', { loop: true, volume: 0.2 });
-    ambienceSound.play();
+    if (this.sound.get('ambience')) {
+        ambienceSound.play().catch(() => {});
+    }
     
     // UI Elements
     createUI(this);
@@ -375,8 +377,8 @@ function update() {
     
     // Animation
     if (velocityX !== 0 || velocityY !== 0) {
-        if (!footstepsSound.isPlaying) {
-            footstepsSound.play();
+        if (footstepsSound && !footstepsSound.isPlaying) {
+            footstepsSound.play().catch(() => {});
         }
         
         if (velocityX > 0) player.anims.play('hero-walk-right', true);
@@ -384,7 +386,7 @@ function update() {
         else if (velocityY > 0) player.anims.play('hero-walk-down', true);
         else if (velocityY < 0) player.anims.play('hero-walk-up', true);
     } else {
-        footstepsSound.pause();
+        if (footstepsSound) footstepsSound.pause();
         player.anims.stop();
         // Set idle frame based on last direction
         const frame = player.anims.currentAnim ? player.anims.currentAnim.name.split('-')[2] : 'down';
